@@ -85,7 +85,12 @@ const Activity = () => {
                         key={index}
                         className={`w-3 h-3 rounded-sm ${
                           contribution.value > 0
-                            ? `bg-green-500 ${intensity[contribution.intensity]}`
+                            ? `bg-green-500 bg-opacity-${
+                                contribution.intensity === 0 ? "10" : 
+                                contribution.intensity === 1 ? "30" : 
+                                contribution.intensity === 2 ? "50" : 
+                                contribution.intensity === 3 ? "70" : "90"
+                              }`
                             : "bg-muted bg-opacity-20"
                         }`}
                         title={`${contribution.value} contributions`}
