@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useTheme } from "@/components/ThemeProvider";
+import { motion } from "framer-motion";
 
 interface Contribution {
   value: number;
@@ -80,59 +81,87 @@ const GitHubActivityChart: React.FC<GitHubActivityChartProps> = ({
   }
 
   return (
-    <div className="relative overflow-hidden">
+    <motion.div 
+      className="relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex mb-1 text-xs text-muted-foreground">
         {monthLabels.map((label, i) => (
-          <div 
+          <motion.div 
             key={i} 
             className="absolute text-xs" 
             style={{ left: `${label.position * 15}px` }}
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 * i, duration: 0.3 }}
           >
             {label.month}
-          </div>
+          </motion.div>
         ))}
       </div>
       
       <div className="flex mt-6 overflow-x-auto pb-4">
         <div className="flex flex-col mr-2">
           {Array.from({ length: 7 }).map((_, i) => (
-            <div key={i} className="h-3 text-xs text-muted-foreground flex items-center justify-end pr-1" style={{ width: '30px' }}>
+            <motion.div 
+              key={i}
+              className="h-3 text-xs text-muted-foreground flex items-center justify-end pr-1" 
+              style={{ width: '30px' }}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.05 * i, duration: 0.3 }}
+            >
               {i % 2 === 1 && getDayLabel(i)}
-            </div>
+            </motion.div>
           ))}
         </div>
         
         <div className="flex">
           {weeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-1 mr-1">
+            <motion.div 
+              key={weekIndex} 
+              className="flex flex-col gap-1 mr-1"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.01 * weekIndex, duration: 0.3 }}
+            >
               {Array.from({ length: 7 }).map((_, dayIndex) => {
                 const contribution = week[dayIndex];
                 return (
-                  <div
+                  <motion.div
                     key={dayIndex}
                     className={`w-3 h-3 rounded-sm ${contribution ? getColorClass(contribution.intensity) : "bg-muted bg-opacity-20"}`}
                     title={contribution ? `${contribution.value} contributions on ${contribution.date.toDateString()}` : "No contributions"}
+                    whileHover={{ scale: 1.5 }}
+                    transition={{ duration: 0.2 }}
                   />
                 );
               })}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
       
-      <div className="flex justify-between items-center mt-4 text-xs text-muted-foreground">
+      <motion.div 
+        className="flex justify-between items-center mt-4 text-xs text-muted-foreground"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.3 }}
+      >
         <div>{totalContributions} contributions in the last year</div>
         <div className="flex items-center gap-1">
           <span>Less</span>
-          <div className="w-3 h-3 rounded-sm bg-muted bg-opacity-20"></div>
-          <div className={`w-3 h-3 rounded-sm ${getColorClass(1)}`}></div>
-          <div className={`w-3 h-3 rounded-sm ${getColorClass(2)}`}></div>
-          <div className={`w-3 h-3 rounded-sm ${getColorClass(3)}`}></div>
-          <div className={`w-3 h-3 rounded-sm ${getColorClass(4)}`}></div>
+          <motion.div className="w-3 h-3 rounded-sm bg-muted bg-opacity-20" whileHover={{ scale: 1.5 }}></motion.div>
+          <motion.div className={`w-3 h-3 rounded-sm ${getColorClass(1)}`} whileHover={{ scale: 1.5 }}></motion.div>
+          <motion.div className={`w-3 h-3 rounded-sm ${getColorClass(2)}`} whileHover={{ scale: 1.5 }}></motion.div>
+          <motion.div className={`w-3 h-3 rounded-sm ${getColorClass(3)}`} whileHover={{ scale: 1.5 }}></motion.div>
+          <motion.div className={`w-3 h-3 rounded-sm ${getColorClass(4)}`} whileHover={{ scale: 1.5 }}></motion.div>
           <span>More</span>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
