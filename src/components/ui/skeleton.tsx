@@ -7,11 +7,8 @@ function Skeleton({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <motion.div
+    <div
       className={cn("animate-pulse rounded-md bg-muted bg-opacity-30", className)}
-      initial={{ opacity: 0.3 }}
-      animate={{ opacity: 0.7 }}
-      transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
       {...props}
     />
   )

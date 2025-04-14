@@ -171,18 +171,17 @@ const ContactForm = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.4 }}
-          whileHover={{ scale: 1.02 }}
         >
-          <Button 
-            type="submit" 
-            disabled={isSubmitting} 
-            className="gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Send Message
-            <SendIcon className="h-4 w-4" />
-          </Button>
+          <motion.div whileHover={{ scale: 1.02 }}>
+            <Button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="gap-2"
+            >
+              Send Message
+              <SendIcon className="h-4 w-4" />
+            </Button>
+          </motion.div>
         </motion.div>
       </motion.form>
     </motion.div>

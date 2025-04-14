@@ -1,5 +1,5 @@
 
-import { HTMLMotionProps, motion } from "framer-motion";
+import { HTMLMotionProps, motion, AnimatePresence } from "framer-motion";
 import React from "react";
 
 export type AnimatedElementProps = HTMLMotionProps<"div"> & {
@@ -71,4 +71,4 @@ export const ScaleIn = ({
   </motion.div>
 );
 
-export const AnimatePresence = motion.AnimatePresence;
+export { AnimatePresence };
