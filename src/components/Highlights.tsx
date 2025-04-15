@@ -2,18 +2,19 @@
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Highlights = () => {
   const projects = [
     {
-      id: 1,
+      id: 'droppy',
       logo: "🔄",
       name: "Droppy",
       description: "An apple alternative on browser for devices connected to the same internet connection, ranked #11 on Product Hunt, with 1,900+ X impressions.",
       date: "January 25, 2025",
     },
     {
-      id: 2,
+      id: 'coachbots',
       logo: "C",
       name: "Frontend Web Engineer @ Coachbots",
       description: "Working on the frontend of an AI coaching platform.",
@@ -21,7 +22,7 @@ const Highlights = () => {
       isCurrent: true,
     },
     {
-      id: 3,
+      id: 'noteverse',
       logo: "N",
       name: "Noteverse",
       description: "A note-taking application with markdown support.",
@@ -58,7 +59,7 @@ const Highlights = () => {
           transition={{ duration: 0.4, delay: index * 0.1 }}
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
         >
-          <Card className="overflow-hidden border bg-card">
+          <Card className="overflow-hidden border bg-card hover:bg-card/80 transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
                 <motion.div 
@@ -87,17 +88,18 @@ const Highlights = () => {
                   </div>
                   <p className="mt-1 text-muted-foreground">{project.description}</p>
                   
-                  {project.id === 1 && (
-                    <div className="mt-2">
-                      <motion.button 
-                        className="text-sm inline-flex items-center text-primary hover:underline"
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        Read more <ArrowRight className="ml-1 h-3 w-3" />
-                      </motion.button>
-                    </div>
-                  )}
+                  <Link 
+                    to={`/project/${project.id}`}
+                    className="mt-4 inline-flex items-center text-sm text-[#9B87F5] hover:text-[#7E69AB] transition-colors"
+                  >
+                    <motion.span 
+                      className="inline-flex items-center"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Read more <ArrowRight className="ml-1 h-3 w-3" />
+                    </motion.span>
+                  </Link>
                 </div>
               </div>
             </CardContent>
