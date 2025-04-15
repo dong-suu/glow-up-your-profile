@@ -46,7 +46,7 @@ const Highlights = () => {
 
   return (
     <motion.div 
-      className="space-y-6"
+      className="space-y-4 md:space-y-6" // Reduced spacing on mobile
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -60,19 +60,19 @@ const Highlights = () => {
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
         >
           <Card className="overflow-hidden border bg-card hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
+            <CardContent className="p-4 md:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                 <motion.div 
-                  className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-muted text-foreground font-bold"
+                  className="w-12 h-12 md:w-10 md:h-10 mx-auto sm:mx-0 flex items-center justify-center rounded-full bg-muted text-foreground font-bold"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.2 }}
                 >
                   {project.logo}
                 </motion.div>
-                <div className="flex-1">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold">{project.name}</h3>
-                    <div className="text-sm text-muted-foreground flex items-center gap-2">
+                <div className="flex-1 text-center sm:text-left">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
+                    <h3 className="text-lg md:text-xl font-semibold">{project.name}</h3>
+                    <div className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
                       {project.date}
                       {project.isCurrent && (
                         <motion.span 
@@ -86,11 +86,11 @@ const Highlights = () => {
                       )}
                     </div>
                   </div>
-                  <p className="mt-1 text-muted-foreground">{project.description}</p>
+                  <p className="mt-2 text-sm md:text-base text-muted-foreground">{project.description}</p>
                   
                   <Link 
                     to={`/project/${project.id}`}
-                    className="mt-4 inline-flex items-center text-sm text-[#9B87F5] hover:text-[#7E69AB] transition-colors"
+                    className="mt-3 md:mt-4 inline-flex items-center text-sm text-[#9B87F5] hover:text-[#7E69AB] transition-colors"
                   >
                     <motion.span 
                       className="inline-flex items-center"
