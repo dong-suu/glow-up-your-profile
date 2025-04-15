@@ -46,7 +46,7 @@ const Highlights = () => {
 
   return (
     <motion.div 
-      className="space-y-4 md:space-y-6" // Reduced spacing on mobile
+      className="space-y-3"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -57,26 +57,26 @@ const Highlights = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: index * 0.1 }}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
+          whileHover={{ y: -2, transition: { duration: 0.2 } }}
         >
-          <Card className="overflow-hidden border bg-card hover:bg-card/80 transition-colors">
-            <CardContent className="p-4 md:p-6">
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+          <Card className="overflow-hidden border-0 bg-background/50 dark:bg-black/50 hover:bg-background/80 dark:hover:bg-black/80 transition-colors backdrop-blur-sm">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-4">
                 <motion.div 
-                  className="w-12 h-12 md:w-10 md:h-10 mx-auto sm:mx-0 flex items-center justify-center rounded-full bg-muted text-foreground font-bold"
+                  className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-muted text-foreground text-lg font-medium"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.2 }}
                 >
                   {project.logo}
                 </motion.div>
-                <div className="flex-1 text-center sm:text-left">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
-                    <h3 className="text-lg md:text-xl font-semibold">{project.name}</h3>
-                    <div className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                    <h3 className="text-base font-medium truncate">{project.name}</h3>
+                    <div className="text-sm text-muted-foreground flex items-center gap-2">
                       {project.date}
                       {project.isCurrent && (
                         <motion.span 
-                          className="px-2 py-1 text-xs bg-green-500/10 text-green-500 rounded-full"
+                          className="px-2 py-0.5 text-xs bg-green-500/10 text-green-500 rounded-full"
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5 }}
@@ -86,11 +86,12 @@ const Highlights = () => {
                       )}
                     </div>
                   </div>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground">{project.description}</p>
-                  
+                  {project.description && (
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{project.description}</p>
+                  )}
                   <Link 
                     to={`/project/${project.id}`}
-                    className="mt-3 md:mt-4 inline-flex items-center text-sm text-[#9B87F5] hover:text-[#7E69AB] transition-colors"
+                    className="inline-flex items-center text-sm text-primary hover:opacity-80 transition-opacity"
                   >
                     <motion.span 
                       className="inline-flex items-center"
