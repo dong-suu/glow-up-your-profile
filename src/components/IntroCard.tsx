@@ -28,7 +28,7 @@ const IntroCard = () => {
       transition={{ duration: 0.3 }}
       className="w-full max-w-3xl mx-auto"
     >
-      <div className="bg-background/80 dark:bg-black/90 rounded-3xl overflow-hidden backdrop-blur-xl border border-border dark:border-white/10">
+      <div className="bg-background/80 dark:bg-black/90 rounded-3xl overflow-hidden backdrop-blur-xl border border-border dark:border-white/10 font-[Inter]">
         {/* Header */}
         <div className="p-4 md:p-6 pb-4">
           <div className="flex justify-between items-center text-muted-foreground mb-4">
@@ -77,9 +77,9 @@ const IntroCard = () => {
         </div>
 
         {/* Status Bar */}
-        <div className="bg-gradient-to-r from-green-500/10 to-green-500/5 dark:from-green-500/20 dark:to-green-500/10 p-4 flex items-center justify-center gap-2 text-green-600 dark:text-green-400">
+        <div className="bg-green-500 p-4 flex items-center justify-center gap-2 text-white">
           <Zap className="w-5 h-5" />
-          <span>Currently High on Creativity</span>
+          <span className="font-medium">Currently High on Creativity</span>
         </div>
       </div>
     </motion.div>
