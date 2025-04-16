@@ -51,10 +51,6 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = projectData[id as keyof typeof projectData];
 
-  if (!project) {
-    return <div>Project not found</div>;
-  }
-
   return (
     <motion.div 
       className="min-h-screen bg-gradient-to-br from-[#F1F0FB] via-[#E5DEFF] to-[#D3E4FD] dark:from-[#1A1F2C] dark:via-[#221F26] dark:to-[#403E43] text-foreground"
@@ -77,75 +73,102 @@ const ProjectDetail = () => {
             Back
           </Button>
 
-          <div className="bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl p-8 shadow-lg">
-            <motion.h1 
-              className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#6E59A5]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              {project.title}
-            </motion.h1>
-            
+          {project ? (
+            <div className="bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl p-8 shadow-lg">
+              <motion.h1 
+                className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#6E59A5]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {project.title}
+              </motion.h1>
+              
+              <motion.div 
+                className="text-muted-foreground mb-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                {project.date} • {project.role}
+              </motion.div>
+
+              <motion.p 
+                className="text-lg mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {project.description}
+              </motion.p>
+
+              <motion.div 
+                className="mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <h2 className="text-xl font-semibold mb-4">Technology Stack</h2>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech, index) => (
+                    <span 
+                      key={tech}
+                      className="px-3 py-1 rounded-full bg-[#9B87F5]/10 text-[#9B87F5] text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <h2 className="text-xl font-semibold mb-4">Key Achievements</h2>
+                <ul className="space-y-3">
+                  {project.details.map((detail, index) => (
+                    <motion.li 
+                      key={index}
+                      className="flex items-start gap-2"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.7 + index * 0.1 }}
+                    >
+                      <span className="text-[#9B87F5]">•</span>
+                      {detail}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          ) : (
             <motion.div 
-              className="text-muted-foreground mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              className="bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl p-8 md:p-12 shadow-lg flex flex-col items-center justify-center text-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              {project.date} • {project.role}
+              <motion.h1 
+                className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#6E59A5]"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                No More Information Available
+              </motion.h1>
+              
+              <motion.p 
+                className="text-lg md:text-xl text-muted-foreground max-w-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                Additional details for this project haven't been added yet. Please check back later or explore other projects.
+              </motion.p>
             </motion.div>
-
-            <motion.p 
-              className="text-lg mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              {project.description}
-            </motion.p>
-
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <h2 className="text-xl font-semibold mb-4">Technology Stack</h2>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech, index) => (
-                  <span 
-                    key={tech}
-                    className="px-3 py-1 rounded-full bg-[#9B87F5]/10 text-[#9B87F5] text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <h2 className="text-xl font-semibold mb-4">Key Achievements</h2>
-              <ul className="space-y-3">
-                {project.details.map((detail, index) => (
-                  <motion.li 
-                    key={index}
-                    className="flex items-start gap-2"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7 + index * 0.1 }}
-                  >
-                    <span className="text-[#9B87F5]">•</span>
-                    {detail}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+          )}
         </motion.div>
       </div>
     </motion.div>
