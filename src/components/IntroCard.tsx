@@ -26,60 +26,60 @@ const IntroCard = () => {
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="w-full max-w-3xl mx-auto"
+      className="w-full"
     >
-      <div className="bg-background/80 dark:bg-black/90 rounded-3xl overflow-hidden backdrop-blur-xl border border-border dark:border-white/10 font-[Inter]">
+      <div className="bg-background/80 dark:bg-black/90 rounded-3xl overflow-hidden backdrop-blur-xl border border-border dark:border-white/10 font-primary">
         {/* Header */}
-        <div className="p-4 md:p-6 pb-4">
-          <div className="flex justify-between items-center text-muted-foreground mb-4">
-            <span>Frontend Engineer</span>
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              <span>{currentTime}</span>
+        <div className="p-4 md:p-8">
+          <div className="flex justify-between items-center text-muted-foreground mb-6">
+            <span className="text-base md:text-lg">Frontend Engineer</span>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-base md:text-lg">{currentTime}</span>
             </div>
           </div>
 
           {/* Profile Section */}
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-4 mb-4">
             <img 
               src="/lovable-uploads/e5b7e8c8-1c86-4264-8574-fc707bb2616c.png"
               alt="Profile"
-              className="w-12 h-12 rounded-full border-2 border-border dark:border-white/10"
+              className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-border dark:border-white/10"
             />
             <div>
-              <h2 className="text-xl font-semibold">Mohammed Falah</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold">Mohammed Falah</h2>
               <div className="flex items-center gap-2 text-green-400">
                 <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                <span className="text-sm">Available for work</span>
+                <span className="text-sm md:text-base">Available for work</span>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-2 gap-3 mt-4">
+          <div className="grid grid-cols-2 gap-4 mt-6">
             <Button 
               variant="secondary" 
-              className="w-full bg-secondary/80 dark:bg-white/10 hover:bg-secondary dark:hover:bg-white/20 dark:text-white border-0"
+              className="w-full bg-secondary/80 dark:bg-white/10 hover:bg-secondary dark:hover:bg-white/20 dark:text-white border-0 text-base md:text-lg"
               onClick={() => window.location.href = '#contact'}
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Hire Me
             </Button>
             <Button
               variant="secondary"
-              className="w-full bg-secondary/80 dark:bg-white/10 hover:bg-secondary dark:hover:bg-white/20 dark:text-white border-0"
+              className="w-full bg-secondary/80 dark:bg-white/10 hover:bg-secondary dark:hover:bg-white/20 dark:text-white border-0 text-base md:text-lg"
               onClick={handleCopyEmail}
             >
-              <Copy className="w-4 h-4 mr-2" />
+              <Copy className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Copy Email
             </Button>
           </div>
         </div>
 
         {/* Status Bar */}
-        <div className="bg-green-500 p-4 flex items-center justify-center gap-2 text-white">
-          <Zap className="w-5 h-5" />
-          <span className="font-medium">Currently High on Creativity</span>
+        <div className="bg-green-500 p-4 md:p-6 flex items-center justify-center gap-2 text-white">
+          <Zap className="w-5 h-5 md:w-6 md:h-6" />
+          <span className="font-medium text-base md:text-lg">Currently High on Creativity</span>
         </div>
       </div>
     </motion.div>
