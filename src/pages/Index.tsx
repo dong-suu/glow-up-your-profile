@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Github, Mail, Phone, Sun, Moon, ExternalLink } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import ProfileHeader from "@/components/ProfileHeader";
 import Highlights from "@/components/Highlights";
@@ -73,23 +72,25 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
+          className="w-full"
         >
           <Tabs 
             defaultValue="highlights" 
-            className="mt-8" 
+            className="mt-8 w-full" 
             onValueChange={(value) => setActiveTab(value)}
           >
-            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto bg-white/30 dark:bg-black/30 backdrop-blur-md">
+            <TabsList className="grid w-full grid-cols-3 max-w-full mx-auto bg-white/30 dark:bg-black/30 backdrop-blur-md">
               {["highlights", "activity", "contact"].map((tab, index) => (
                 <motion.div
                   key={tab}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.3 }}
+                  className="w-full"
                 >
                   <TabsTrigger 
                     value={tab}
-                    className="capitalize data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9B87F5] data-[state=active]:to-[#7E69AB] data-[state=active]:text-white"
+                    className="w-full capitalize text-sm md:text-base data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9B87F5] data-[state=active]:to-[#7E69AB] data-[state=active]:text-white"
                   >
                     {tab}
                   </TabsTrigger>
@@ -104,15 +105,15 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="mt-6 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl p-6 shadow-lg"
+                className="mt-6 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl p-4 md:p-6 shadow-lg w-full"
               >
-                <TabsContent value="highlights" className="mt-6">
+                <TabsContent value="highlights" className="mt-0 md:mt-6 w-full">
                   <Highlights />
                 </TabsContent>
-                <TabsContent value="activity" className="mt-6">
+                <TabsContent value="activity" className="mt-0 md:mt-6 w-full">
                   <Activity />
                 </TabsContent>
-                <TabsContent value="contact" className="mt-6">
+                <TabsContent value="contact" className="mt-0 md:mt-6 w-full">
                   <ContactForm />
                 </TabsContent>
               </motion.div>
@@ -125,4 +126,3 @@ const Index = () => {
 };
 
 export default Index;
-
